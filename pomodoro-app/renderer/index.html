@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>番茄钟</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Title Bar -->
+  <div id="title-bar">
+    <span id="title-icon">🍅</span>
+    <span id="title-text">番茄钟</span>
+    <div id="title-buttons">
+      <button id="btn-minimize" title="最小化到托盘" class="title-btn">─</button>
+      <button id="btn-close" title="退出" class="title-btn title-btn-close">✕</button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <div id="app">
+    <!-- Mode Indicator -->
+    <div id="mode-indicator">
+      <span id="mode-text">专注工作</span>
+      <span id="session-count">🍅 × 0</span>
+    </div>
+
+    <!-- Timer Circle -->
+    <div id="timer-container">
+      <svg id="progress-ring" viewBox="0 0 200 200">
+        <circle id="progress-bg" cx="100" cy="100" r="90" />
+        <circle id="progress-bar" cx="100" cy="100" r="90" />
+      </svg>
+      <div id="timer-display">
+        <span id="timer-minutes">25</span>
+        <span id="timer-separator">:</span>
+        <span id="timer-seconds">00</span>
+      </div>
+    </div>
+
+    <!-- Current Task -->
+    <div id="current-task-bar">
+      <span id="current-task-label">当前任务：</span>
+      <span id="current-task-name">未选择任务</span>
+    </div>
+
+    <!-- Control Buttons -->
+    <div id="controls">
+      <button id="btn-start" class="btn btn-primary">开始</button>
+      <button id="btn-pause" class="btn btn-secondary" style="display:none;">暂停</button>
+      <button id="btn-reset" class="btn btn-outline">重置</button>
+      <button id="btn-skip" class="btn btn-outline">跳过</button>
+    </div>
+
+    <!-- Stats Row -->
+    <div id="stats-row">
+      <div class="stat-item">
+        <span class="stat-value" id="stat-today">0</span>
+        <span class="stat-label">今日番茄</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value" id="stat-week">0</span>
+        <span class="stat-label">本周番茄</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value" id="stat-total">0</span>
+        <span class="stat-label">总计番茄</span>
+      </div>
+    </div>
+
+    <!-- Task Section -->
+    <div id="task-section">
+      <div id="task-header">
+        <span>📋 任务列表</span>
+        <button id="btn-toggle-tasks" class="btn-icon">▲</button>
+      </div>
+      <div id="task-body">
+        <div id="task-input-row">
+          <input type="text" id="task-input" placeholder="添加新任务..." maxlength="80">
+          <button id="btn-add-task" class="btn-icon">＋</button>
+        </div>
+        <ul id="task-list"></ul>
+      </div>
+    </div>
+
+    <!-- Settings Section -->
+    <div id="settings-section">
+      <div id="settings-header">
+        <span>⚙️ 设置</span>
+        <button id="btn-toggle-settings" class="btn-icon">▲</button>
+      </div>
+      <div id="settings-body" style="display:none;">
+        <div class="setting-row">
+          <label>工作时间（分钟）</label>
+          <input type="number" id="setting-work" min="1" max="60" value="25">
+        </div>
+        <div class="setting-row">
+          <label>短休息（分钟）</label>
+          <input type="number" id="setting-short-break" min="1" max="30" value="5">
+        </div>
+        <div class="setting-row">
+          <label>长休息（分钟）</label>
+          <input type="number" id="setting-long-break" min="1" max="60" value="15">
+        </div>
+        <div class="setting-row">
+          <label>长休息间隔（番茄数）</label>
+          <input type="number" id="setting-interval" min="1" max="10" value="4">
+        </div>
+        <div class="setting-row">
+          <label>窗口置顶</label>
+          <input type="checkbox" id="setting-ontop" checked>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

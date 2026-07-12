@@ -1,0 +1,34 @@
+{
+  "name": "pomodoro-timer",
+  "version": "1.0.0",
+  "description": "A beautiful desktop Pomodoro timer with task tracking and statistics",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win portable",
+    "build:installer": "electron-builder --win"
+  },
+  "build": {
+    "appId": "com.pomodoro.timer",
+    "productName": "番茄钟",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        "portable",
+        "nsis"
+      ],
+      "icon": "assets/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^42.3.3"
+  }
+}

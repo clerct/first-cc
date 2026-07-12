@@ -1,0 +1,562 @@
+/* === Reset & Base === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --tomato: #E53935;
+  --tomato-light: #FF6B6B;
+  --tomato-dark: #C62828;
+  --bg-primary: #1E1E2E;
+  --bg-secondary: #2A2A3E;
+  --bg-card: #313148;
+  --text-primary: #F0F0F5;
+  --text-secondary: #A0A0B8;
+  --text-muted: #6A6A80;
+  --green: #4CAF50;
+  --green-light: #81C784;
+  --blue: #42A5F5;
+  --blue-light: #90CAF9;
+  --orange: #FF9800;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --transition: 0.2s ease;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+  background: transparent;
+  color: var(--text-primary);
+  height: 100vh;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-app-region: no-drag;
+}
+
+/* === Title Bar === */
+#title-bar {
+  display: flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 12px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius) var(--radius) 0 0;
+  -webkit-app-region: drag;
+}
+
+#title-icon {
+  font-size: 14px;
+  margin-right: 6px;
+}
+
+#title-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  flex: 1;
+}
+
+#title-buttons {
+  display: flex;
+  gap: 4px;
+  -webkit-app-region: no-drag;
+}
+
+.title-btn {
+  width: 28px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.title-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}
+
+.title-btn-close:hover {
+  background: var(--tomato);
+  color: white;
+}
+
+/* === App Container === */
+#app {
+  background: var(--bg-primary);
+  border-radius: 0 0 var(--radius) var(--radius);
+  padding: 16px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: calc(100vh - 36px);
+  overflow: hidden;
+  gap: 12px;
+}
+
+/* === Mode Indicator === */
+#mode-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 4px;
+}
+
+#mode-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--tomato-light);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+#session-count {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* === Timer Circle === */
+#timer-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  flex-shrink: 0;
+}
+
+#progress-ring {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+#progress-bg {
+  fill: none;
+  stroke: var(--bg-card);
+  stroke-width: 8;
+}
+
+#progress-bar {
+  fill: none;
+  stroke: var(--tomato);
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 565.49;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.3s ease, stroke 0.5s ease;
+}
+
+#timer-display {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
+#timer-minutes,
+#timer-seconds {
+  font-size: 48px;
+  font-weight: 300;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+  letter-spacing: 2px;
+}
+
+#timer-separator {
+  font-size: 40px;
+  font-weight: 300;
+  color: var(--text-secondary);
+}
+
+/* === Current Task Bar === */
+#current-task-bar {
+  width: 100%;
+  text-align: center;
+  padding: 4px 12px;
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+}
+
+#current-task-label {
+  color: var(--text-muted);
+}
+
+#current-task-name {
+  color: var(--blue-light);
+  font-weight: 500;
+}
+
+/* === Controls === */
+#controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.btn {
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 10px 24px;
+  border-radius: 24px;
+  transition: var(--transition);
+  font-family: inherit;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary {
+  background: var(--tomato);
+  color: white;
+  min-width: 100px;
+}
+
+.btn-primary:hover {
+  background: var(--tomato-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(229, 57, 53, 0.4);
+}
+
+.btn-secondary {
+  background: var(--orange);
+  color: white;
+  min-width: 100px;
+}
+
+.btn-secondary:hover {
+  background: #F57C00;
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1.5px solid var(--bg-card);
+  padding: 8px 18px;
+  font-size: 13px;
+}
+
+.btn-outline:hover {
+  border-color: var(--text-muted);
+  color: var(--text-primary);
+}
+
+/* === Stats Row === */
+#stats-row {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+  justify-content: center;
+  padding: 4px 0;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.stat-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--tomato-light);
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* === Task Section === */
+#task-section {
+  width: 100%;
+  background: var(--bg-secondary);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+#task-header,
+#settings-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+#task-header:hover,
+#settings-header:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+#task-body {
+  padding: 0 14px 14px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+#task-input-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+  flex-shrink: 0;
+}
+
+#task-input {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  color: var(--text-primary);
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+  transition: var(--transition);
+}
+
+#task-input:focus {
+  border-color: var(--blue);
+}
+
+#task-input::placeholder {
+  color: var(--text-muted);
+}
+
+.btn-icon {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  font-size: 16px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+.btn-icon:hover {
+  background: var(--tomato);
+  color: white;
+}
+
+#btn-toggle-tasks,
+#btn-toggle-settings {
+  font-size: 12px;
+  width: 24px;
+  height: 24px;
+}
+
+#btn-toggle-tasks:hover,
+#btn-toggle-settings:hover {
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+
+/* === Task List === */
+#task-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 180px;
+  overflow-y: auto;
+  min-height: 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--text-muted) transparent;
+}
+
+#task-list::-webkit-scrollbar {
+  width: 5px;
+}
+
+#task-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#task-list::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 3px;
+}
+
+#task-list::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  transition: var(--transition);
+  cursor: pointer;
+  border: 1.5px solid transparent;
+}
+
+.task-item:hover {
+  background: var(--bg-primary);
+}
+
+.task-item.active {
+  border-color: var(--blue);
+  background: rgba(66, 165, 245, 0.1);
+}
+
+.task-item.completed .task-title {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.task-checkbox {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--text-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  transition: var(--transition);
+}
+
+.task-checkbox:hover {
+  border-color: var(--green);
+}
+
+.task-item.completed .task-checkbox {
+  background: var(--green);
+  border-color: var(--green);
+}
+
+.task-title {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.task-pomos {
+  font-size: 11px;
+  color: var(--tomato-light);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.task-delete {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+.task-delete:hover {
+  color: var(--tomato);
+  background: rgba(229, 57, 53, 0.15);
+}
+
+/* === Settings Section === */
+#settings-section {
+  width: 100%;
+  background: var(--bg-secondary);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+#settings-body {
+  padding: 0 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.setting-row label {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.setting-row input[type="number"] {
+  width: 70px;
+  background: var(--bg-card);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  color: var(--text-primary);
+  font-size: 13px;
+  font-family: inherit;
+  text-align: center;
+  outline: none;
+  transition: var(--transition);
+}
+
+.setting-row input[type="number"]:focus {
+  border-color: var(--blue);
+}
+
+.setting-row input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--tomato);
+  cursor: pointer;
+}
+
+/* === Scrollbar === */
+#app::-webkit-scrollbar {
+  width: 4px;
+}
+
+#app::-webkit-scrollbar-thumb {
+  background: var(--bg-card);
+  border-radius: 2px;
+}
+
+/* === Animations === */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.running #timer-separator {
+  animation: pulse 1s ease infinite;
+}
